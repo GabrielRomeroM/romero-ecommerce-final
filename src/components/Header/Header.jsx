@@ -1,34 +1,40 @@
-import './Header.css';
+import { Link, useNavigate } from 'react-router-dom'
+import './Header.css'
 
-const Header = ({ cartCount, navigateTo }) => {
+const Header = () => {
+  const navigate = useNavigate()
+  
+  // Ejemplo: podrías obtener el count del carrito de un contexto o estado global
+  const cartCount = 0 // Temporal - luego conectaremos con el carrito real
+
   return (
     <header className="header">
       <div className="container">
         <div className="header-content">
-          <div className="logo" onClick={() => navigateTo('home')}>
+          <Link to="/" className="logo">
             <i className="fas fa-store"></i>
             SuperMarket
-          </div>
+          </Link>
           
           <nav className="nav-menu">
             <ul>
               <li>
-                <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('home'); }}>
+                <Link to="/">
                   <i className="fas fa-home"></i> Inicio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('register'); }}>
+                <Link to="/register">
                   <i className="fas fa-user-plus"></i> Registro
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" onClick={(e) => { e.preventDefault(); navigateTo('login'); }}>
+                <Link to="/login">
                   <i className="fas fa-sign-in-alt"></i> Login
-                </a>
+                </Link>
               </li>
               <li>
-                <div className="cart-widget" onClick={() => console.log('Ir al carrito')}>
+                <div className="cart-widget" onClick={() => navigate('/cart')}>
                   <i className="fas fa-shopping-cart"></i>
                   {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
                 </div>
@@ -38,7 +44,7 @@ const Header = ({ cartCount, navigateTo }) => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
