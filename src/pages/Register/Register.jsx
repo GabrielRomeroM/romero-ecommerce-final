@@ -1,99 +1,99 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import './Register.css'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Register.css";
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    acceptTerms: false
-  })
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+    acceptTerms: false,
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    setFormData(prev => ({
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }))
-    
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
-      }))
+        [name]: "",
+      }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = 'El nombre es requerido'
+      newErrors.firstName = "El nombre es requerido";
     }
 
     if (!formData.lastName.trim()) {
-      newErrors.lastName = 'El apellido es requerido'
+      newErrors.lastName = "El apellido es requerido";
     }
 
     if (!formData.email) {
-      newErrors.email = 'El email es requerido'
+      newErrors.email = "El email es requerido";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'El email no es válido'
+      newErrors.email = "El email no es válido";
     }
 
     if (!formData.password) {
-      newErrors.password = 'La contraseña es requerida'
+      newErrors.password = "La contraseña es requerida";
     } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres'
+      newErrors.password = "La contraseña debe tener al menos 6 caracteres";
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Confirma tu contraseña'
+      newErrors.confirmPassword = "Confirma tu contraseña";
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Las contraseñas no coinciden'
+      newErrors.confirmPassword = "Las contraseñas no coinciden";
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = 'El teléfono es requerido'
+      newErrors.phone = "El teléfono es requerido";
     }
 
     if (!formData.acceptTerms) {
-      newErrors.acceptTerms = 'Debes aceptar los términos y condiciones'
+      newErrors.acceptTerms = "Debes aceptar los términos y condiciones";
     }
 
-    return newErrors
-  }
+    return newErrors;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const newErrors = validateForm()
+    e.preventDefault();
+    const newErrors = validateForm();
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
 
-    setIsLoading(true)
-    
+    setIsLoading(true);
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      console.log('Datos de registro:', formData)
-      alert('¡Registro exitoso! Bienvenido a SuperMarket')
-      navigate('/')
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log("Datos de registro:", formData);
+      alert("¡Registro exitoso! Bienvenido a SuperMarket");
+      navigate("/");
     } catch (error) {
-      console.error('Error en registro:', error)
-      alert('Error al registrarse. Intenta nuevamente.')
+      console.error("Error en registro:", error);
+      alert("Error al registrarse. Intenta nuevamente.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="register-container">
@@ -115,10 +115,12 @@ const Register = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
-                className={`form-input ${errors.firstName ? 'error' : ''}`}
+                className={`form-input ${errors.firstName ? "error" : ""}`}
                 placeholder="Tu nombre"
               />
-              {errors.firstName && <span className="error-message">{errors.firstName}</span>}
+              {errors.firstName && (
+                <span className="error-message">{errors.firstName}</span>
+              )}
             </div>
 
             <div className="form-group">
@@ -131,10 +133,12 @@ const Register = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
-                className={`form-input ${errors.lastName ? 'error' : ''}`}
+                className={`form-input ${errors.lastName ? "error" : ""}`}
                 placeholder="Tu apellido"
               />
-              {errors.lastName && <span className="error-message">{errors.lastName}</span>}
+              {errors.lastName && (
+                <span className="error-message">{errors.lastName}</span>
+              )}
             </div>
           </div>
 
@@ -148,10 +152,12 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`form-input ${errors.email ? 'error' : ''}`}
+              className={`form-input ${errors.email ? "error" : ""}`}
               placeholder="tu@email.com"
             />
-            {errors.email && <span className="error-message">{errors.email}</span>}
+            {errors.email && (
+              <span className="error-message">{errors.email}</span>
+            )}
           </div>
 
           <div className="form-group">
@@ -164,10 +170,12 @@ const Register = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className={`form-input ${errors.phone ? 'error' : ''}`}
+              className={`form-input ${errors.phone ? "error" : ""}`}
               placeholder="+1 234 567 890"
             />
-            {errors.phone && <span className="error-message">{errors.phone}</span>}
+            {errors.phone && (
+              <span className="error-message">{errors.phone}</span>
+            )}
           </div>
 
           <div className="password-fields">
@@ -181,10 +189,12 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`form-input ${errors.password ? 'error' : ''}`}
+                className={`form-input ${errors.password ? "error" : ""}`}
                 placeholder="Crea una contraseña"
               />
-              {errors.password && <span className="error-message">{errors.password}</span>}
+              {errors.password && (
+                <span className="error-message">{errors.password}</span>
+              )}
             </div>
 
             <div className="form-group">
@@ -197,10 +207,14 @@ const Register = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className={`form-input ${errors.confirmPassword ? 'error' : ''}`}
+                className={`form-input ${
+                  errors.confirmPassword ? "error" : ""
+                }`}
                 placeholder="Repite tu contraseña"
               />
-              {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}
+              {errors.confirmPassword && (
+                <span className="error-message">{errors.confirmPassword}</span>
+              )}
             </div>
           </div>
 
@@ -213,37 +227,35 @@ const Register = () => {
                 onChange={handleChange}
               />
               <span className="checkmark"></span>
-              Acepto los{' '}
+              Acepto los{" "}
               <Link to="/terms" className="terms-link">
                 términos y condiciones
-              </Link>{' '}
-              y las{' '}
+              </Link>{" "}
+              y las{" "}
               <Link to="/privacy" className="terms-link">
                 políticas de privacidad
               </Link>
             </label>
-            {errors.acceptTerms && <span className="error-message">{errors.acceptTerms}</span>}
+            {errors.acceptTerms && (
+              <span className="error-message">{errors.acceptTerms}</span>
+            )}
           </div>
 
-          <button 
-            type="submit" 
-            className="register-btn"
-            disabled={isLoading}
-          >
+          <button type="submit" className="register-btn" disabled={isLoading}>
             {isLoading ? (
               <>
                 <div className="spinner"></div>
                 Creando cuenta...
               </>
             ) : (
-              'Crear Cuenta'
+              "Crear Cuenta"
             )}
           </button>
         </form>
 
         <div className="register-footer">
           <p>
-            ¿Ya tienes una cuenta?{' '}
+            ¿Ya tienes una cuenta?{" "}
             <Link to="/login" className="link">
               Inicia sesión aquí
             </Link>
@@ -251,7 +263,7 @@ const Register = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
