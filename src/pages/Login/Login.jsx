@@ -1,74 +1,73 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import Button from '../../components/Button/Button'
-import './Login.css'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import "./Login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
-  const [errors, setErrors] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate = useNavigate()
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-    // Limpiar error del campo al escribir
+      [name]: value,
+    }));
+
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
-      }))
+        [name]: "",
+      }));
     }
-  }
+  };
 
   const validateForm = () => {
-    const newErrors = {}
+    const newErrors = {};
 
     if (!formData.email) {
-      newErrors.email = 'El email es requerido'
+      newErrors.email = "El email es requerido";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'El email no es válido'
+      newErrors.email = "El email no es válido";
     }
 
     if (!formData.password) {
-      newErrors.password = 'La contraseña es requerida'
+      newErrors.password = "La contraseña es requerida";
     } else if (formData.password.length < 6) {
-      newErrors.password = 'La contraseña debe tener al menos 6 caracteres'
+      newErrors.password = "La contraseña debe tener al menos 6 caracteres";
     }
 
-    return newErrors
-  }
+    return newErrors;
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    const newErrors = validateForm()
+    e.preventDefault();
+    const newErrors = validateForm();
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
+      setErrors(newErrors);
+      return;
     }
 
-    setIsLoading(true)
-    
-    // Simular llamada a API
+    setIsLoading(true);
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500))
-      console.log('Datos de login:', formData)
-      alert('¡Inicio de sesión exitoso!')
-      navigate('/')
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      console.log("Datos de login:", formData);
+      alert("¡Inicio de sesión exitoso!");
+      navigate("/");
     } catch (error) {
-      console.error('Error en login:', error)
-      alert('Error al iniciar sesión. Intenta nuevamente.')
+      console.error("Error en login:", error);
+      alert("Error al iniciar sesión. Intenta nuevamente.");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="login-container">
@@ -89,10 +88,12 @@ const Login = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`form-input ${errors.email ? 'error' : ''}`}
+              className={`form-input ${errors.email ? "error" : ""}`}
               placeholder="tu@email.com"
             />
-            {errors.email && <span className="error-message">{errors.email}</span>}
+            {errors.email && (
+              <span className="error-message">{errors.email}</span>
+            )}
           </div>
 
           <div className="form-group">
@@ -105,10 +106,12 @@ const Login = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className={`form-input ${errors.password ? 'error' : ''}`}
+              className={`form-input ${errors.password ? "error" : ""}`}
               placeholder="Tu contraseña"
             />
-            {errors.password && <span className="error-message">{errors.password}</span>}
+            {errors.password && (
+              <span className="error-message">{errors.password}</span>
+            )}
           </div>
 
           <div className="form-options">
@@ -122,20 +125,20 @@ const Login = () => {
             </Link>
           </div>
 
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             variant="primary"
             disabled={isLoading}
             isLoading={isLoading}
             className="login-btn"
           >
-            {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
           </Button>
         </form>
 
         <div className="login-footer">
           <p>
-            ¿No tienes una cuenta?{' '}
+            ¿No tienes una cuenta?{" "}
             <Link to="/register" className="link">
               Regístrate aquí
             </Link>
@@ -159,7 +162,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

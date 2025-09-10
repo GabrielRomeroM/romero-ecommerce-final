@@ -1,6 +1,6 @@
-import ProductCard from '../../components/ProductCard/ProductCard'
-import { products } from '../../data/products'
-import './Home.css'
+import ProductCard from "../../components/ProductCard/ProductCard";
+import { products } from "../../data/products";
+import "./Home.css";
 
 const Home = () => {
   return (
@@ -13,14 +13,11 @@ const Home = () => {
       <h2 className="section-title">Nuestros Productos</h2>
       <div className="products-grid">
         {products.map((product) => (
-          <ProductCard 
-            key={product.id} 
-            product={product} 
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

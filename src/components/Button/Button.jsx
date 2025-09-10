@@ -1,15 +1,17 @@
-import './Button.css'
+import "./Button.css";
 
-const Button = ({ 
-  children, 
-  variant = 'primary',
+const Button = ({
+  children,
+  variant = "primary",
   onClick,
   disabled = false,
-  type = 'button',
-  className = ''
+  type = "button",
+  className = "",
 }) => {
-  const buttonClass = `btn btn-${variant} ${disabled ? 'disabled' : ''} ${className}`.trim()
-  
+  const buttonClass = `btn btn-${variant} ${
+    disabled ? "disabled" : ""
+  } ${className}`.trim();
+
   return (
     <button
       type={type}
@@ -19,7 +21,7 @@ const Button = ({
     >
       {children}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

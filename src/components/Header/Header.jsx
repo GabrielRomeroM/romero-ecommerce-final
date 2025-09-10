@@ -1,11 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
-import './Header.css'
+import { Link, useNavigate } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
-  const navigate = useNavigate()
-  
-  // Ejemplo: podrías obtener el count del carrito de un contexto o estado global
-  const cartCount = 0 // Temporal - luego conectaremos con el carrito real
+  const navigate = useNavigate();
+
+  const cartCount = 0; // Temporal - luego conectar con el carrito real
 
   return (
     <header className="header">
@@ -15,7 +14,7 @@ const Header = () => {
             <i className="fas fa-store"></i>
             SuperMarket
           </Link>
-          
+
           <nav className="nav-menu">
             <ul>
               <li>
@@ -34,9 +33,11 @@ const Header = () => {
                 </Link>
               </li>
               <li>
-                <div className="cart-widget" onClick={() => navigate('/cart')}>
+                <div className="cart-widget" onClick={() => navigate("/cart")}>
                   <i className="fas fa-shopping-cart"></i>
-                  {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+                  {cartCount > 0 && (
+                    <span className="cart-count">{cartCount}</span>
+                  )}
                 </div>
               </li>
             </ul>
@@ -44,7 +45,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
