@@ -5,6 +5,9 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   border: 1px solid #eaeaea;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -21,6 +24,9 @@
 
 .product-info {
   padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-name {
@@ -29,7 +35,6 @@
   margin-bottom: 12px;
   color: #2c3e50;
   line-height: 1.4;
-  min-height: 3rem;
 }
 
 .product-price {
@@ -47,6 +52,8 @@
   display: inline-block;
   background-color: #27ae60;
   color: white;
+  font-size: 0.85rem;
+  align-self: flex-start;
 }
 
 .product-stock.out-of-stock {
@@ -66,6 +73,29 @@
   font-style: italic;
 }
 
+/* CAMBIO IMPORTANTE: Renombrar la clase del botón para evitar conflictos */
+.product-details-link {
+  display: block;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  margin-top: auto;
+}
+
+.product-details-link:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #2573a7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Eliminar estas clases conflictivas */
+/*
 .btn {
   display: inline-block;
   padding: 12px 24px;
@@ -90,6 +120,7 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
+*/
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -103,5 +134,17 @@
   
   .product-price {
     font-size: 1.3rem;
+  }
+  
+  .product-details-link {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-details-link {
+    padding: 10px 15px;
+    font-size: 0.85rem;
   }
 }

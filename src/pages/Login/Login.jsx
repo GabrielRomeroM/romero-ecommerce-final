@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Button from '../../components/Button/Button'
 import './Login.css'
 
 const Login = () => {
@@ -121,20 +122,15 @@ const Login = () => {
             </Link>
           </div>
 
-          <button 
+          <Button 
             type="submit" 
-            className="login-btn"
+            variant="primary"
             disabled={isLoading}
+            isLoading={isLoading}
+            className="login-btn"
           >
-            {isLoading ? (
-              <>
-                <div className="spinner"></div>
-                Iniciando sesión...
-              </>
-            ) : (
-              'Iniciar Sesión'
-            )}
-          </button>
+            {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+          </Button>
         </form>
 
         <div className="login-footer">

@@ -17,9 +17,11 @@ const ProductCard = ({ product }) => {
         </p>
         <p className="product-code">Código: {product.code}</p>
         <p className="product-category">{product.category}</p>
+        
+        {/* Cambio aquí: usar la nueva clase */}
         <Link 
           to={`/product/${product.id}`}
-          className="btn btn-details"
+          className="product-details-link"
         >
           Ver Detalles
         </Link>

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
 import "./Register.css";
 
 const Register = () => {
@@ -241,16 +242,15 @@ const Register = () => {
             )}
           </div>
 
-          <button type="submit" className="register-btn" disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <div className="spinner"></div>
-                Creando cuenta...
-              </>
-            ) : (
-              "Crear Cuenta"
-            )}
-          </button>
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={isLoading}
+            isLoading={isLoading}
+            className="register-btn"
+          >
+            {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
+          </Button>
         </form>
 
         <div className="register-footer">

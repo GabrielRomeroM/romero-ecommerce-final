@@ -119,33 +119,12 @@
   text-decoration: underline;
 }
 
+/* Estilos específicos para el botón en el register */
 .register-btn {
   width: 100%;
   padding: 15px;
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-  color: white;
-  border: none;
-  border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.register-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2980b9 0%, #2573a7 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-}
-
-.register-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
 }
 
 .register-footer {
